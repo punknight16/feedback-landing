@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body > * {
+				height: 1000px;
+			}
+			#cover_section {
+				background: red;
+			}
+			#why_section {
+				background: blue;
+			}
+			#how_section {
+				background: green;
+			}
+			#cta_section {
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body onload="startTime()">
+		<section id='cover_section'></section>
+		<section id='why_section'></section>
+		<section id='how_section'></section>
+		<section id='cta_section'></section>
+		<script>
+			var AppContext = {
+				cover_section: [],
+				why_section: [],
+				how_section: [],
+				cta_section: [],
+				cover_height: $('#cover_section').offset().top,
+				why_height: $('#why_section').offset().top,
+				how_height: $('#how_section').offset().top,
+				cta_height: $('#cta_section').offset().top
+			};
+			AppContext.timer = 0;
+			AppContext.current_height = 0;
+
+			setTimeout(function(){ 
+					console.log('Report: ', JSON.stringify(AppContext));
+			}, 10000);
+			
+		 
+			
+			function startTime(){
+				AppContext.timer++;
+				//console.log(AppContext.timer)
+
+				if (AppContext.current_height >= AppContext.cta_height){
+					AppContext.cta_section.push(AppContext.timer);
+				} else if (AppContext.current_height >= AppContext.how_height){
+					AppContext.how_section.push(AppContext.timer);
+				} else if (AppContext.current_height >= AppContext.why_height){
+					AppContext.why_section.push(AppContext.timer);
+				} else {
+					AppContext.cover_section.push(AppContext.timer);
+				}
+
+
+				if(AppContext.timer<10){
+					setTimeout(function(){startTime()}, 1000);	
+				} else {
+					return;
+				}
+			}
+
+
+
+
+			
+			$(window).scroll(function() {
+				AppContext.current_height = $(this).scrollTop();
+			});
+		</script>
+	</body>
+</html>

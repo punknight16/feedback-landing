@@ -1,0 +1,48 @@
+landing page
+  --sections
+    --hero image with story statment and CTA
+    --why (what the problem is)
+    --How (how we solve it)
+    --Testimonials
+    --CTA
+questionnaire page  
+  --sections
+     --account creation section (email input, password input)
+     --login section (email input, password input)
+     --demographic questions form
+     		(1) age, (2) ethnicity, (3) highest level of education, (4) marital status, (5) employment status
+     --psychogrpahic questions form
+     	  (1) interests, (2) activities, (3) opinions
+ --features
+  --automatic signup if people are having trouble
+  --email confirmation?
+
+review landing page
+  --sections
+    --single page with section ids for every part of landing page
+    --possible overlay to help user give real time feedback
+  --features
+    --timer tracking how long on each section
+    --javascript hooks for tracking mouse clicks
+    --boolean for testing whether click on CTA
+
+feedback page
+	--sections
+  	--what space was the landing page in?
+  	--scale from 1-10 how much did you like the page?
+  	--was their anything particular interesting about the page?
+  	--Why or why not did you click on CTA?
+
+Add Landing page
+  --sections
+    --URL input
+    --Section IDs to track
+    --Button IDs to track
+    --input budget
+
+
+List Feedback
+  --sections
+    --report card of avg statistics
+    --separate feedback by demographics/psychographics
+

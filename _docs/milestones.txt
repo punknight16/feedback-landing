@@ -1,0 +1,5 @@
+8/7/2019 - Ideation and Team complete
+8/14/2019 - Input, Test, Report sections of home.html page functionality working
+8/21/2019 - Registration, Payment - functionality working
+8/28/2019 - Guest, Member, Admin Flows - functionality working
+9/4/2019 - Launch
