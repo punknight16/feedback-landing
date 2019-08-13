@@ -47,9 +47,9 @@
 
 			setTimeout(function(){ 
 					console.log('Report: ', JSON.stringify(AppContext));
+					goReport(AppContext);
 			}, 10000);
 			
-		 
 			
 			function startTime(){
 				AppContext.timer++;
@@ -73,13 +73,21 @@
 				}
 			}
 
-
-
-
-			
 			$(window).scroll(function() {
 				AppContext.current_height = $(this).scrollTop();
 			});
+
+			function goReport(AppContext){
+		    var form = document.createElement("form");
+		    var element1 = document.createElement("input");
+		    form.method = "GET";
+		    form.action = "./report.html";
+		    element1.value=JSON.stringify(AppContext);
+		    element1.name="AppContext";
+		    form.appendChild(element1); 
+		    document.body.appendChild(form);
+		    form.submit();
+			}
 		</script>
 	</body>
 </html>
