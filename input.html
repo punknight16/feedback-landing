@@ -1,0 +1,36 @@
+<html>
+<head>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+</head>
+<body>
+	<main>
+		<section>
+			<input type='text' placeholder='url' />
+		</section>
+		<section>
+			<iframe id="iframe" src="./test.html" onload='addTracker'></iframe>
+		</section>
+	</main>
+	<script>
+	$(function() {
+      var $frame = $('<iframe style="width:200px; height:100px;">');
+      $('body').html( $frame );
+      setTimeout( function() {
+          var doc = $frame[0].contentWindow.document;
+          var $body = $('body',doc);
+          $body.html('<h1>Test</h1>');
+      }, 1 );
+  });
+	/*function addTracker(){
+		$('#test').append('check me out!');
+	}*/
+	/*$.get("http://feedback-landing.s3-website-us-west-2.amazonaws.com", function(data, status){
+    console.log("Data: " + data + "\nStatus: " + status);
+    $("#test").append(data);
+  });*/
+ 	</script>
+</body>
+</html>
