@@ -1,15 +1,17 @@
-var AppContext = {
-	cover_section: [],
-	why_section: [],
-	how_section: [],
-	cta_section: [],
-	cover_height: 0,
-	why_height: 1000,
-	how_height: 2000,
-	cta_height: 3000
+var AppContext = {sections: {}, heights: {}};
+var $sections = $('body').find('section');
+if($sections.length ===0 ) throw 'no sections'
+var section_id, section_selector;
+for (var i = 0; i < $sections.length; i++) {
+	section_id = 'section_'+i;
+	section_selector = 'section:eq('+i+')';
+	AppContext.sections[section_id] =  [];
+	AppContext.heights[section_id] = $(section_selector).offset().top;
 };
+
 AppContext.timer = 0;
 AppContext.current_height = 0;
+
 
 setTimeout(function(){ 
 		console.log('Report: ', JSON.stringify(AppContext));
@@ -17,28 +19,7 @@ setTimeout(function(){
 }, 10000);
 
 
-function startTime(){
 
-	AppContext.timer++;
-	console.log(AppContext.timer)
-
-	if (AppContext.current_height >= AppContext.cta_height){
-		AppContext.cta_section.push(AppContext.timer);
-	} else if (AppContext.current_height >= AppContext.how_height){
-		AppContext.how_section.push(AppContext.timer);
-	} else if (AppContext.current_height >= AppContext.why_height){
-		AppContext.why_section.push(AppContext.timer);
-	} else {
-		AppContext.cover_section.push(AppContext.timer);
-	}
-
-
-	if(AppContext.timer<10){
-		setTimeout(function(){startTime()}, 1000);	
-	} else {
-		return;
-	}
-}
 
 $(window).scroll(function() {
 	AppContext.current_height = $(this).scrollTop();
@@ -56,6 +37,26 @@ function goReport(AppContext){
   form.submit();
 }
 
-$(function() {
-	startTime();
-})
+function noop(){};
+
+function checkScroll(){
+		checkScroll = noop;
+		setInterval(function(){
+
+
+			AppContext.timer++
+			var section_id;
+			
+			console.log('timer: ', AppContext.timer)
+			
+			for (var i = Object.keys(AppContext.sections).length - 1; i >= 0; i--) {
+				section_id = 'section_'+i;
+				if (AppContext.current_height >= AppContext.heights[section_id]){
+					AppContext.sections[section_id].push(AppContext.timer);
+					break;
+				}
+			};
+		}, 1000);
+	}
+
+$( document ).ready(function() {checkScroll()});

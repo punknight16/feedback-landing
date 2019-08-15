@@ -55,7 +55,7 @@
 	$('#inputButton').on('click', function(){
 		$('#input').addClass('hide');
 		$('#customStyles').remove();
-		$.get("http://feedback-landing.s3-website-us-west-2.amazonaws.com", function(data, status){
+		$.get("http://feedback-landing.s3-website-us-west-2.amazonaws.com/", function(data, status){
 	    //console.log("Data: " + data + "\nStatus: " + status);
 	    $html = $(data);
 	    

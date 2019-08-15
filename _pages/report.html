@@ -1,0 +1,94 @@
+<html>
+<head>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<style>
+		* {
+				margin: 0;
+				padding: 0;
+		}
+		#main > * {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	 	.section-card {
+	 		display: flex;
+	 		height: 100px;
+	 		width: 100px;
+	 		border: 2px solid #d5d5d5;
+	 		margin-bottom: 20px;
+	 	}
+	 	.section-data {
+	 		height: 100px;
+	 		width: 10px;
+	 	}
+	 	/**COLOR OVERLAY**/
+		.color-0 {
+			background: #FFF;
+		}
+		.color-1 {
+			background: #006BA6;
+		}
+		.color-2 {
+			background: #0496FF;
+		}
+		.color-3 {
+			background: #FFBC42;
+		}
+		.color-4 {
+			background: #D81159;
+		}
+		.color-5 {
+			background: #8F2D56;
+		}
+	 	
+	</style>
+	<script>
+		function getParameterByName(name, url) {
+		  if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			    results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+	</script>
+</head>
+<body onload="createReport()">
+	<main id='main'>
+	<section id='reportSection'>
+		<h1>Time usage over 10 seconds</h1>
+		
+		
+	</section>
+	</main>
+	<script>
+		
+		function createReport(AppContext){
+			var section_id, data_color;
+			var AppContext = JSON.parse(getParameterByName('AppContext'));
+			for (var i = 0;  i <Object.keys(AppContext.sections).length; i++) {
+				section_id = Object.keys(AppContext.sections)[i];
+				$('#reportSection').append(`<label>${section_id} Report</label>`); 
+				$('#reportSection').append(`<div id='${section_id}' class='section-card'></div>`);
+				data_color = 'color-'+Math.ceil(Math.random()*5);
+				createData(AppContext, section_id, data_color); 
+			};
+		}
+		function createData(AppContext, section_name, data_color){
+			var card_id;
+			for (var i = 0; i < AppContext.sections[section_name].length; i++) {
+				card_id = '#'+section_name;
+				$(card_id).append(`<div class='section-data ${data_color}'></div>`);
+			};
+		}
+		
+	</script>
+	
+</body>
+</html>
