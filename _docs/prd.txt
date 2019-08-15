@@ -8,3 +8,20 @@ add jquery get data to iframe
 add scroll tracking to body of iframe
 
 
+input
+-----------------
+get input url
+set it in an iframe, 
+validate that it has sections,
+ask if person is ready for test -> submit form test.html?url='index.html'
+
+test.html
+----------
+
+
+
+Final product 
+--------------
+get Input url
+make a copy of the url on the server, and give a new link with added tracking data
+
