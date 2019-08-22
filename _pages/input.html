@@ -34,28 +34,24 @@
 <body id='body'>
 	<main>
 		<section id='input'>
-			<input type='text' placeholder='url' value='./sample.html' />
-			<iframe id="iframe" src="./sample.html" sandbox='allow-same-origin'></iframe>
+			<input id='inputInput' type='text' placeholder='url' value='./sample.html' />
+			<iframe id="iframeIframe" src="./sample.html" sandbox='allow-same-origin allow-scripts'></iframe>
 			<button id='inputButton'>Run Test</button>
 		</section>
 		<section id='test'></section>
 		<section id='report'></section>
 	</main>
 	<script>
-	/*
-	$(function() {
-      var $frame = $('<iframe style="width:200px; height:100px;">'); //create a jquery frame var
-      $('body').html( $frame ); //set the body html to have only the frame
-      setTimeout( function() {
-          var doc = $frame[0].contentWindow.document; //get the dom document within the frame
-          var $body = $('body',doc); //find the body tag of that document
-          $body.html('<h1>Test</h1>'); //set the html of that body tag 
-      }, 1 );
-  });*/
+	$('#inputInput').on('change', function(){
+		var value = $('#inputInput').val();
+		$('#iframeIframe').attr('src', value);
+
+	});
 	$('#inputButton').on('click', function(){
 		$('#input').addClass('hide');
 		$('#customStyles').remove();
-		$.get("http://feedback-landing.s3-website-us-west-2.amazonaws.com/", function(data, status){
+		var value = $('#inputInput').val();
+		$.get(value, function(data, status){
 	    //console.log("Data: " + data + "\nStatus: " + status);
 	    $html = $(data);
 	    
