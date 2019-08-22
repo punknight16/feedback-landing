@@ -1,6 +1,19 @@
-1. type url into input
-2. on change send it to iframe src
-3. create error message 
-	(a) not a valid url
-	(b) no sections
+create a lambda function to pull data from an s3 bucket or dynamoDB
 
+
+analytics page prints data of
+
+--1 APP_ID
+--Most recent week (starting from monday)
+--All unique IP addresses
+--50 seconds
+
+query returns:
+
+{app_id: 'a0', section: 'cover_section', unique_visitors: [
+	timebox0: [8, 4, 3, 2, 1],
+	timebox1: [3, 2, 1],
+	timebox2: [2, 1],
+	timebox3: [2],
+	timebox4: [1]
+]}
