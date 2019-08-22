@@ -1,2 +1,6 @@
-3 min timer
-id tracking scroller
+1. type url into input
+2. on change send it to iframe src
+3. create error message 
+	(a) not a valid url
+	(b) no sections
+

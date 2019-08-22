@@ -12,6 +12,11 @@
 			body > * {
 				height: 1000px;
 			}
+			h1 {
+				text-align: center;
+				padding: 50px;
+				color: white;
+			}
 			#cover_section {
 				background: red;
 			}
@@ -27,7 +32,7 @@
 		</style>
 	</head>
 	<body onload="startTime()">
-		<section id='cover_section'></section>
+		<section id='cover_section'><h1>Scroll Down</h1></section>
 		<section id='why_section'></section>
 		<section id='how_section'></section>
 		<section id='cta_section'></section>
@@ -47,9 +52,9 @@
 
 			setTimeout(function(){ 
 					console.log('Report: ', JSON.stringify(AppContext));
+					goReport(AppContext);
 			}, 10000);
 			
-		 
 			
 			function startTime(){
 				AppContext.timer++;
@@ -73,13 +78,21 @@
 				}
 			}
 
-
-
-
-			
 			$(window).scroll(function() {
 				AppContext.current_height = $(this).scrollTop();
 			});
+
+			function goReport(AppContext){
+		    var form = document.createElement("form");
+		    var element1 = document.createElement("input");
+		    form.method = "GET";
+		    form.action = "./report.html";
+		    element1.value=JSON.stringify(AppContext);
+		    element1.name="AppContext";
+		    form.appendChild(element1); 
+		    document.body.appendChild(form);
+		    form.submit();
+			}
 		</script>
 	</body>
 </html>
