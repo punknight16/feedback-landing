@@ -55,13 +55,13 @@
 		}
 	 	.section-card {
 	 		display: flex;
+	 		align-items: flex-end;
 	 		height: 100px;
 	 		width: 100px;
 	 		border: 2px solid #d5d5d5;
 	 		margin-bottom: 20px;
 	 	}
 	 	.section-data {
-	 		height: 100px;
 	 		width: 10px;
 	 	}
 	 	/**COLOR OVERLAY**/
@@ -108,26 +108,28 @@
 	</script>
 	<script>
 		function createReport(AppContext){
-			var section_id, section_id_str, card_id, data_color;
+			var section_id, section_id_str, card_id, section_card_id, data_color;
 			//var AppContext = JSON.parse(getParameterByName('AppContext'));
 			for (var i = 0;  i <Object.keys(AppContext.sections).length; i++) {
 				section_id = Object.keys(AppContext.sections)[i];
 				$('#main').append(`<label><h3>${section_id} Report</h3></label>`);
 				$('#main').append(`<section id='${section_id}'></section>`);
+				data_color = 'color-'+Math.ceil(Math.random()*5);
 				for (var j = 0; j < Object.keys(AppContext.sections[section_id]).length; j++) {
 				 	section_id_str = '#'+section_id;
 				 	card_id = Object.keys(AppContext.sections[section_id])[j];
-				 	$(section_id_str).append(`<div id='${card_id}' class='section-card'></div>`);
-				 	data_color = 'color-'+Math.ceil(Math.random()*5);
-					//createData(AppContext, section_id, data_color); 
+				 	section_card_id = section_id+card_id;
+				 	$(section_id_str).append(`<div id='${section_card_id}' class='section-card'></div>`);
+					createData(AppContext, section_id, card_id, data_color); 
 				}; 
 			};
 		}
-		function createData(AppContext, section_name, data_color){
-			var card_id;
-			for (var i = 0; i < AppContext.sections[section_name].length; i++) {
-				card_id = '#'+section_name;
-				$(card_id).append(`<div class='section-data ${data_color}'></div>`);
+		function createData(AppContext, section_id, card_id, data_color){
+			var card_id_str, height;
+			for (var k = 0; k < AppContext.sections[section_id][card_id].length; k++) {
+				card_id_str = '#'+section_id+card_id;
+				height = AppContext.sections[section_id][card_id][k] * 10+'px';
+				$(card_id_str).append(`<div class='section-data ${data_color}' style='height: ${height}'></div>`);
 			};
 		}
 	</script>
