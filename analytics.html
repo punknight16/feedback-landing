@@ -93,14 +93,18 @@
 	</main>
 	<script>
 		var apigClient = apigClientFactory.newClient();
+		console.log(apigClient);
 		var params = {};
-		var body = {}; 
+		var body = {
+			"app_id": "clearcut_ip"
+		}; 
 		var additionalParams = {};
 
-		apigClient.analyticsGet(params, body, additionalParams)
+		apigClient.analyticsPost(params, body, additionalParams)
 	    .then(function(result){
 	      // Add success callback code here.
-	      createReport(JSON.parse(result.data.body));
+	      console.log("result: ", result);
+	      createReport(result.data.Item);
 	    }).catch( function(error){
 	      // Add error callback code here.
 	      console.log(error);
