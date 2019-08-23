@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./_static/build/lib/axios/dist/axios.standalone.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/CryptoJS/rollups/sha256.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/CryptoJS/components/hmac.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/CryptoJS/components/enc-base64.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/url-template/url-template.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/apiGatewayCore/sigV4Client.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/apiGatewayCore/apiGatewayClient.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/apiGatewayCore/simpleHttpClient.js"></script>
+	<script type="text/javascript" src="./_static/build/lib/apiGatewayCore/utils.js"></script>
+	<script type="text/javascript" src="./_static/build/apigClient.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<section></section>
+	</main>
+	<script>
+		var AppContext = {sections: {}, heights: {}};
+		var $sections = $('body').find('section');
+		if($sections.length ===0 ) throw 'no sections'
+		var section_id, section_selector;
+		for (var i = 0; i < $sections.length; i++) {
+			section_id = 'section_'+i;
+			section_selector = 'section:eq('+i+')';
+			AppContext.sections[section_id] =  [];
+			AppContext.heights[section_id] = $(section_selector).offset().top;
+		};
+
+		AppContext.timer = 0;
+		AppContext.current_height = 0;
+
+
+		setTimeout(function(){ 
+				console.log('Report: ', JSON.stringify(AppContext));
+				var app_id = 'clearcut_ip';
+				var sections = {};
+				for (var i = 0; i < Object.keys(AppContext.sections).length; i++) {
+					var section_id = Object.keys(AppContext.sections)[i];
+					sections[section_id] = {"timebox_0": AppContext.sections[section_id].slice(0, 11)};
+				};
+				console.log('sections: ', sections);
+				goReport(app_id, sections);
+		}, 11000);
+		setTimeout(function(){ 
+				console.log('Report: ', JSON.stringify(AppContext));
+				var app_id = 'clearcut_ip';
+				var sections = {};
+				for (var i = 0; i < Object.keys(AppContext.sections).length; i++) {
+					var section_id = Object.keys(AppContext.sections)[i];
+					sections[section_id] = {"timebox_1": AppContext.sections[section_id].slice(10, 21)};
+				};
+				console.log('sections: ', sections);
+				goReport(app_id, sections);
+		}, 21000);
+
+
+		$(window).scroll(function() {
+			AppContext.current_height = $(this).scrollTop();
+		});
+
+		function noop(){};
+
+		function checkScroll(){
+				checkScroll = noop;
+				setInterval(function(){
+
+
+					AppContext.timer++
+					var section_id;
+					
+					console.log('timer: ', AppContext.timer)
+					
+					for (var i = Object.keys(AppContext.sections).length - 1; i >= 0; i--) {
+						section_id = 'section_'+i;
+						if (AppContext.current_height >= AppContext.heights[section_id]){
+							AppContext.sections[section_id].push(AppContext.timer);
+							break;
+						}
+					};
+				}, 1000);
+			}
+
+		$( document ).ready(function() {checkScroll()});
+	</script>
+	<script>
+		function goReport(app_id, sections){
+			var apigClient = apigClientFactory.newClient();
+			//console.log(apigClient);
+			/*
+			var sections = {
+		    "section_0": { "timebox_0": [1, 2, 3, 5] },
+		    "section_1": { "timebox_0": [6, 7]},
+		    "section_2": { "timebox_0": [8]},
+		    "section_3": { "timebox_0": [9]},
+		    "section_4": { "timebox_0": [10]}
+			}*/
+			
+			var params = {};
+			var body = {
+				"app_id": app_id,
+				"sections": sections
+			}; 
+			var additionalParams = {};
+
+			apigClient.visitorPost(params, body, additionalParams)
+		    .then(function(result){
+		      // Add success callback code here.
+		      console.log("result: ", result);
+		      
+		    }).catch( function(error){
+		      // Add error callback code here.
+		      console.log(error);
+		    });
+		  }
+		</script>
+	</body>
+</html>
+

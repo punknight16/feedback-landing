@@ -3,6 +3,7 @@ AWS.config.update({region: 'us-west-2'});
 var documentClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = (event, context, callback) => {
+    console.log("event: ", event);
     var section_id, timebox_id, length, add_section;
     var app_id = event.app_id;
     var sections = event.sections;
@@ -34,16 +35,30 @@ exports.handler = (event, context, callback) => {
 
   getItem(params1, function(err, data1){
     if(err) return err;
-    console.log('getItem result: ', data1);
+    //console.log('getItem result: ', data1);
     if(!Object.keys(data1).length){ //if result == {} then putItem
       putItem(params2, function(err, data2){
         if(err) return err;
-        console.log('putItem result: ', data2);
+        //console.log('putItem result: ', data2);
         return data2;
       });
     } else {
       for (var i = 0; i < Object.keys(data1.Item.sections).length; i++) {
         section_id = Object.keys(data1.Item.sections)[i];
+        if(typeof sections[section_id] == 'undefined') {
+          sections[section_id] = {};
+          sections[section_id][timebox_id] = [];
+        }
+        if(typeof sections[section_id][timebox_id] == 'undefined') {
+          sections[section_id][timebox_id] = [];
+        }
+        if(typeof data1.Item.sections[section_id] == 'undefined'){
+          data1.Item.sections[section_id] = {};
+          data1.Item.sections[section_id][timebox_id] = [];
+        }
+        if(typeof data1.Item.sections[section_id][timebox_id] == 'undefined'){
+          data1.Item.sections[section_id][timebox_id] = [];
+        }
         console.log('sections: ', sections);
         console.log('section_id: ', section_id);
         console.log('timebox_id: ', timebox_id);
@@ -52,19 +67,19 @@ exports.handler = (event, context, callback) => {
         console.log('array1: ', array1);
         console.log('array2: ', array2);
         if(array1.length>array2.length){
-          sections[timebox_id][section_id] = array1.map(function (num, idx) {
+          array1.map(function (num, idx) {
             if(typeof array2[idx] !== 'undefined'){
-              return num + array2[idx];  
+              array1[idx] =  num + array2[idx];  
             } else {
-              return num;
+              array1[idx] = num;
             }
           });
         } else {
-          sections[section_id][timebox_id] = array2.map(function (num, idx) {
+          array2.map(function (num, idx) {
             if(typeof array1[idx] !== 'undefined'){
-              return num + array1[idx];  
+              array1[idx] = num + array1[idx];  
             } else {
-              return num;
+              array1[idx] = num;
             }
           });
         }
@@ -76,7 +91,7 @@ exports.handler = (event, context, callback) => {
         },
         UpdateExpression: "set sections = :s",
         ExpressionAttributeValues:{
-          ":s": sections
+          ":s": data1.Item.sections
         },
         ReturnValues:"UPDATED_NEW"
       };
