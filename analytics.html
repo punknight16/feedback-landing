@@ -125,10 +125,11 @@
 			};
 		}
 		function createData(AppContext, section_id, card_id, data_color){
-			var card_id_str, height;
+			var card_id_str, height, max;
 			for (var k = 0; k < AppContext.sections[section_id][card_id].length; k++) {
 				card_id_str = '#'+section_id+card_id;
-				height = AppContext.sections[section_id][card_id][k] * 10+'px';
+				max = AppContext.sections[section_id][card_id][k];
+				height = (max<10) ? max*10+'px' : '100px';
 				$(card_id_str).append(`<div class='section-data ${data_color}' style='height: ${height}'></div>`);
 			};
 		}
