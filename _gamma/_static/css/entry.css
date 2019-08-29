@@ -1,0 +1,80 @@
+html, body {
+	height: 100vh;
+	overflow-y: hidden;
+}
+textarea,
+input.text,
+input[type="file"],
+input[type="text"],
+input[type="password"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+	-webkit-appearance: none;
+	border: 1px solid #cccccc;
+	line-height: 1.5em;
+	border-radius: 0;
+	cursor: pointer;
+	padding-left: 2px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #2F0459;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #2F0459;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #2F0459;
+}
+
+.login-box-left {
+	position: absolute;
+	border-radius: 20px;
+	right: 20%;
+	-moz-transform: skew(10deg, 0deg);
+	-webkit-transform: skew(10deg, 0deg);
+	-o-transform: skew(10deg, 0deg);
+	-ms-transform: skew(10deg, 0deg);
+	transform: skew(10deg, 0deg);
+	width: 200px;
+	height: 300px;
+}
+.login-box-right {
+	position: absolute;
+	border-radius: 20px;
+	right: 10%;
+	-moz-transform: skew(-10deg, 0deg);
+	-webkit-transform: skew(-10deg, 0deg);
+	-o-transform: skew(-10deg, 0deg);
+	-ms-transform: skew(-10deg, 0deg);
+	transform: skew(-10deg, 0deg);
+	width: 200px;
+	height: 300px;
+}
+.login-box-center {
+	position: absolute;
+	border-radius: 20px;
+	right: 15%;
+	width: 200px;
+	height: 300px;
+}
+.small-text {
+	font-size: 13px;
+}
+.bold {
+	font-weight: 600;
+}
+.p-custom {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.mt-4 {
+	margin-top: 4px;
+}
+
