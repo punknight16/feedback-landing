@@ -22,27 +22,20 @@ var server = http.createServer(function(req, res){
 
 function getCloudfront(req, res){
 	var path = req.url;
-	console.log('path: '+path);
-	switch(path){
-		case '/':
+	var path_arr = path.split('/');
+	console.log("path_arr: ", path_arr);
+	switch(path_arr[1]){
+		case '':
 			var stream = fs.createReadStream(__dirname+'/index.html');
 			stream.pipe(res);	
 			break;
-		case '/sample.html':
+		case 'sample.html':
 			var stream = fs.createReadStream(__dirname+'/sample.html');
 			stream.pipe(res);	
 			break;
-		case '/_static/heartbeat.png':
-			var stream = fs.createReadStream(__dirname+'/_static/heartbeat.png');
-			stream.pipe(res);	
-			break;
-		case '/_static/helper.js':
-			var stream = fs.createReadStream(__dirname+'/_static/helper.js');
-			stream.pipe(res);	
-			break;
-		case '/_static/styles.css':
-			res.setHeader('Content-Type', 'text/css');
-			var stream = fs.createReadStream(__dirname+'/_static/styles.css');
+		case '_static':
+			if(path_arr[2] == 'css') res.setHeader('Content-Type', 'text/css');
+			var stream = fs.createReadStream(__dirname+path);
 			stream.pipe(res);	
 			break;
 		default:

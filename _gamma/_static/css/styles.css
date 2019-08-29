@@ -38,6 +38,14 @@ h3 {
 	font-size: 13pt;
 	line-height: 1.5em;
 }
+hr {
+	
+  border: 0; 
+  border-top: 3px solid #ccc;
+  margin: auto;
+  padding: 0;
+  margin-top: 4px;
+}
 .bg-color0: {
 	background-color: #FFF;
 }
@@ -64,6 +72,24 @@ h3 {
 }
 .text-color3 {
 	color: #F2E205;
+}
+.text-color4 {
+	color: #5C12A6;
+}
+.border-color0 {
+	border-color: #FFF;
+}
+.border-color1 {
+	border-color: #2F0459;
+}
+.border-color2 {
+	border-color: #7F25D9;
+}
+.border-color3 {
+	border-color: #F2E205;
+}
+.border-color4 {
+	border-color: #5C12A6;
 }
 .pb-10 {
 	padding-bottom: 10px;

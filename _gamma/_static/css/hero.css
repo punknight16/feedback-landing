@@ -10,7 +10,7 @@ body {
 }
 .hero-parent:after{
     content:'';
-    background:url(./DSC03995.jpeg);
+    background:url(../../_static/imgs/DSC03995.jpeg);
     background-size:cover;
     width: 100vw;
     height: 100vh;
