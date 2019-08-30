@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" 
       type="image/png" 
       href="./_static/imgs/heartbeat.png">
@@ -13,44 +14,148 @@
 	<link rel="stylesheet" type="text/css" href="./_static/css/two-column.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/entry.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./_static/css/modal.css">
+	
+	<script src="./_static/build/amazon-cognito-identity.min.js"></script>
+	<script src="./_static/build/aws-sdk.min.js"></script>
+	<script src="./_static/js/cognito.js"></script>
+
+
 </head>
 <body class='bg-color1'>
-	<div class='background-circle bg-color4'></div>
-	<div class="row">
-		<div class="column" >
-			<section id='register-section' class='d-flex d-flex-end'>
-				<h2 class='text-color3 mt-20 z-2'>Create Your Account</h2>
-				<hr align='end' width="80%" class='border-color2' />
-				<input class='bg-color2 text-color0 mt-20 z-2' type='text' size='30' placeholder="app_id"/>
-				<input class='bg-color2 text-color0 mt-20 z-2' type='text' size='30' placeholder="email"/>
-				<input class='bg-color2 text-color0 mt-20 z-2' type='text' size='30' placeholder="password"/>
-				<button class='mt-20 bg-color3 text-color1 border-color3 z-2'>Sign Up</button>
-			</section>
-		</div>
-		<div class="column" >
-			<section id='login-section' class='d-flex d-flex-center'>
-				<div style="width:300px; height:300px;">
-					<div class='bg-color5 z-2 login-box-left' style=" height:300px;"></div>
-					<div class='bg-color5 z-2 login-box-right' style=" height:300px;"></div>
-					<div class='bg-color5 z-2 login-box-center d-flex' style=" height:300px;">
-						<h3 class='text-color6 center mt-20'>Registered User?</h3>
-						<div class='mt-20'></div>
-						<div>
-							<label class='text-color6 bold'>Email:</label><br />
-							<input class='bg-color4 text-color0 small-text mt-4' type='text' size='25' placeholder="email"/>
-						</div>
-						<div class='mt-20'></div>
-						<div>
-							<label class='mt-20 text-color6 bold'>Password:</label><br />
-							<input class='bg-color4 text-color0 small-text mt-4' type='text' size='25' placeholder="password"/>
-						</div>
-						<button class='mt-20 bg-color3 text-color1 border-color3 z-2 p-custom center'>Login</button>
-						<a href='' class='text-color2 center mt-20'>Forgot Password?</a>
+	<main id="main">
+		<div class='background-circle bg-color4'></div>
+		<div class="row">
+			<div class="column" >
+				<section id='register-section' class='d-flex d-flex-end'>
+					<h2 class='text-color3 mt-20 z-2'>Create Your Account</h2>
+					<hr align='end' width="80%" class='border-color2' />
+					<input id="registerAppIdInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="app_id"/>
+					<input id="registerEmailInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="email"/>
+					<input id="registerPasswordInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='password' size='30' placeholder="password"/>
+					<button id="registerButton" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'>Sign Up</button>
+					<div id='registerErrorPanel' class='hide text-color0 z-2 mt-4' 
+						style='text-align: center; width: 347px;'>
+						<small><span class='text-error'>*</span>One or more fields is invalid. Please create a long password that uses uppercase, lowercase, and numbers.</small>
 					</div>
-				</div>
-			</section>
+					<div id='confirmPanel' class='text-color0 z-2 mt-20' style='text-align: right;'>
+						<small>*Need to confirm your email? 
+							<button id='openConfirmLink' class='btn btn-link text-color3 center mt-20'>Click Here</a>
+						</small>
+					</div>
+				</section>
+			</div>
+			<div class="column" >
+				<section id='login-section' class='mt-20 d-flex d-flex-center'>
+					<div style="width:300px; height:300px;">
+						<div class='bg-color5 z-2 login-box-left' style=" height:300px;"></div>
+						<div class='bg-color5 z-2 login-box-right' style=" height:300px;"></div>
+						<div class='bg-color5 z-2 login-box-center d-flex' style=" height:300px;">
+							<h3 class='text-color6 center mt-20'>Registered User?</h3>
+							<div class='mt-20'></div>
+							<div>
+								<label class='text-color6 bold'>Email:</label><br />
+								<input id='loginEmailInput' class='bg-color4 text-color0 small-text mt-4' type='text' size='25' placeholder="email"/>
+							</div>
+							<div class='mt-20'></div>
+							<div>
+								<label class='mt-20 text-color6 bold'>Password:</label><br />
+								<input id='loginPasswordInput' class='bg-color4 text-color0 small-text mt-4' type='password' size='25' placeholder="password"/>
+							</div>
+							<button id='loginButton' class='mt-20 mb-20 bg-color3 text-color1 border-color3 z-2 p-custom center'>
+								Login</button>
+							<div id='loginErrorPanel' class='hide text-color0 z-2 mt-4' 
+								style='text-align: center;'>
+								<small><span class='text-error'>*</span>Make sure to confirm your email before logging in.</small>
+							</div>
+								
+
+							<button id='forgotPasswordLink' class='btn btn-link text-color2 center mt-20'><small class="mt-20">Forgot Password?</small></a>
+						</div>
+					</div>
+				</section>
+			</div>
 		</div>
+	</main>
+
+	<div id="errorModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='errorModalContent' class="modal-content center bg-color1">
+	    <span id='errorSpan' class="close">&times;</span>
+	    <img src="./_static/imgs/error.png" width="300px" />
+	  </div>
 	</div>
+
+	<div id="confirmModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='confirmModalContent' class="modal-content center bg-color1">
+	    <span id='confirmSpan' class="close">&times;</span>
+	    <section id='confirm-section' class='d-flex'>
+					<h2 class='text-color3 mt-20 z-2'>Confirm Your Account</h2>
+					<hr width="100%" class='border-color2' />
+					<input id="confirmEmailInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="email"/>
+					<input id="confirmCodeInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='password' size='30' placeholder="verification code"/>
+					<button id="confirmButton" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'>Confirm Email</button>
+					<div id='confirmErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+						<small><span class='text-error'>*</span>Make sure to confirm your email.</small>
+					</div>
+				</section>
+	  </div>
+	</div>
+
+	<div id="forgotModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='forgotModalContent' class="modal-content center bg-color1">
+	    <span id='forgotSpan' class="close">&times;</span>
+	    <section id='forgot-section' class='d-flex'>
+					<h2 class='text-color3 mt-20 z-2'>Forgot Your Password...</h2>
+					<hr width="100%" class='border-color2' />
+					<input id="forgotEmailInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="email"/>
+					<button id="forgotButton" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'>Send Reset Code</button>
+					<div id='forgotErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+						<small><span class='text-error'>*</span>Enter a valid email.</small>
+					</div>
+					<div id='resetPanel' class='text-color0 z-2 mt-20' style='text-align: right;'>
+						<small>*Have a reset code already? 
+							<button id='resetPasswordLink' class='btn btn-link text-color3 center mt-20'>Click Here</a>
+						</small>
+					</div>
+				</section>
+	  </div>
+	</div>
+
+	<div id="resetModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='resetModalContent' class="modal-content center bg-color1">
+	    <span id='resetSpan' class="close">&times;</span>
+	    <section id='reset-section' class='d-flex'>
+					<h2 class='text-color3 mt-20 z-2'>Reset Your Password</h2>
+					<hr width="100%" class='border-color2' />
+					<input id="resetEmailInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="Email"/>
+					<input id="resetCodeInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='text' size='30' placeholder="Reset Code"/>
+					<input id="resetPasswordInput" class='bg-color2 text-color0 mt-20 z-2' 
+						type='password' size='30' placeholder="New Password"/>
+					<button id="resetButton" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'>Confirm Email</button>
+					<div id='resetErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+						<small><span class='text-error'>*</span>Check your email for your reset code.</small>
+					</div>
+				</section>
+	  </div>
+	</div>	
+
+	<script src='./_static/js/entry.js'></script>
+	<script src='./_static/js/modal.js'></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 }
 .background-circle {
     position: absolute;
+    z-index: 0;
     right: 10%;
     top: 300px;
     /* bottom: -30%; */
@@ -15,7 +16,7 @@
 }
 
 .background-circle-2 {
-
+  z-index: -2;
   top: 600px;
   right: auto;
   bottom: 0;

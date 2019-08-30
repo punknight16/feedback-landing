@@ -77,4 +77,38 @@ input[type="submit"],
 .mt-4 {
 	margin-top: 4px;
 }
+.bg-error {
+	background-color: pink;
+}
+
+
+.button {
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #eee07e; -webkit-box-shadow: 0 0 3px #eee07e; }
+  50% { background-color: #F2E205; -webkit-box-shadow: 0 0 40px #F2E205; }
+  100% { background-color: #eee07e; -webkit-box-shadow: 0 0 3px #eee07e; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #eee07e; -moz-box-shadow: 0 0 3px #eee07e; }
+  50% { background-color: #F2E205; -moz-box-shadow: 0 0 40px #F2E205; }
+  100% { background-color: #eee07e; -moz-box-shadow: 0 0 3px #eee07e; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #eee07e; box-shadow: 0 0 3px #eee07e; }
+  50% { background-color: #F2E205; box-shadow: 0 0 40px #F2E205; }
+  100% { background-color: #eee07e; box-shadow: 0 0 3px #eee07e; }
+}
+
+@keyframes glowing {
+  0% { background-color: #eee07e; box-shadow: 0 0 3px #eee07e; }
+  50% { background-color: #F2E205; box-shadow: 0 0 40px #F2E205; }
+  100% { background-color: #eee07e; box-shadow: 0 0 3px #eee07e; }
+}
 
