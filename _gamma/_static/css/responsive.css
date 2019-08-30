@@ -1,9 +1,10 @@
 * {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Create two equal columns that floats next to each other */
-.column {
+.two-column {
   float: left;
   width: 50%;
   
@@ -11,6 +12,15 @@
   flex-direction: column;
   align-items: center;
 }
+
+.three-column {
+  float: left;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -24,11 +34,23 @@
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .column {
+  h1 {
+    font-size: 36px
+  }
+  h2 {
+    font-size: 21px
+  }
+  h3 {
+    font-size: 12px;
+  }
+  .two-column {
+    width: 100%;
+  }
+  .three-column {
     width: 100%;
   }
   .ph-100 {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }

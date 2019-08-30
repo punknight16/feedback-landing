@@ -89,7 +89,8 @@ $('#loginButton').on('click', function(e){
 			if(err) {
 				callErrorModal(err);
 			} else {
-				console.log('login success');		
+				console.log('login success');
+				goHome();		
 			}
 		});
 	}
@@ -188,3 +189,11 @@ function validatePasswordInput(y){
 		return true;
 	}
 }
+
+function goHome(){
+			var form = document.createElement("form");
+		  form.method = "GET";
+		  form.action = "./home.html";   
+		  document.body.appendChild(form);
+		  form.submit();
+		}

@@ -17,7 +17,16 @@ section {
 .d-flex {
 	display: flex;
 	flex-direction: column;
-	
+}
+.d-flex-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.d-flex-start {
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 .d-flex-center {
 	justify-content: center;
@@ -43,7 +52,7 @@ h1, h2, h3, button, p, input {
 	font-family: 'Libre Baskerville', serif;
 }
 h1 {
-	font-size: 57pt;
+	font-size: 47pt;
 	text-transform: uppercase;
 }
 h2 {
@@ -53,6 +62,10 @@ h2 {
 h3 {
 	font-size: 13pt;
 	line-height: 1.5em;
+}
+h4 {
+	font-size: 36pt;
+	text-transform: uppercase;
 }
 input {
 	font-size: 13pt;
@@ -135,19 +148,33 @@ hr {
 .pb-10 {
 	padding-bottom: 10px;
 }
+.pl-10 {
+	padding-left: 5px;
+}
 .ph-100 {
 	padding-left: 100px;
 	padding-right: 100px;
 }
-.mt-100 {
-	margin-top: 100px;
-}
 .pt-100 {
 	padding-top: 100px;
+}
+.pt-20 {
+	padding-top: 20px;
 }
 .pb-100 {
 	padding-bottom: 100px;
 }
+.p-4 {
+	padding: 4px;
+}
+.ph-6 {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.mt-100 {
+	margin-top: 100px;
+}
+
 .mt-20 {
 	margin-top: 20px
 }

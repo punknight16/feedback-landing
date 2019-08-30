@@ -5,9 +5,12 @@ function startHeartbeatPost(session_id, app_id, sections, cb){
 		app_id: app_id,
 		sections: sections
 	};
+	/*
 	$.post( "http://localhost:3000/startHeartbeatPost", JSON.stringify(body), function( result ) {
 	  return cb(result);
 	}, "json");
+*/
+	localStorage.setItem("AppContext", JSON.stringify(body));
 }
 
 function pulseHeartbeatPost(session_id, app_id, sections, cb){
@@ -16,9 +19,12 @@ function pulseHeartbeatPost(session_id, app_id, sections, cb){
 		app_id: app_id,
 		sections: sections
 	};
+	/*
 	$.post( "http://localhost:3000/pulseHeartbeatPost", JSON.stringify(body), function( result ) {
 	  return cb(result);
 	}, "json");
+	*/
+	localStorage.setItem("AppContext", JSON.stringify(body));
 }
 
 function startScrollListener(AppContext, timeout){
@@ -74,11 +80,11 @@ $( document ).ready(function() {
 		AppContext.heights[section_id] = $(section_selector).offset().top;
 	};
 	
-
+	
 	startHeartbeatPost(AppContext.session_id, AppContext.app_id, AppContext.sections, function(result){
 		console.log('result: ', result);
 	});
-
+	
 	AppContext.timer = 0;
 	AppContext.current_height = 0;
 

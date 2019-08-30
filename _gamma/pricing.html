@@ -1,0 +1,90 @@
+<html>
+<head>
+	<link rel="icon" 
+      type="image/png" 
+      href="./_static/imgs/heartbeat.png">
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./_static/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+
+		}
+		.card {
+			height: 200px;
+			width: 200px;
+			border-radius: 20px;
+			border-style: solid;
+			border-width: 2px;
+		}
+		.card-bottom {
+			margin-top: 40px;
+			height: 156px;
+			width: 196px;
+			border-bottom-left-radius: 18px;
+			border-bottom-right-radius: 18px;
+			background-color: #FFF;
+		}
+		.p-custom {
+			margin-top: 10px;
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
+	</style>
+</head>
+<body class='d-flex d-flex-start bg-color4'>
+	<div class='background-circle-3 bg-color2' style="z-index:-4;"></div>
+	<div class='background-circle-3 background-circle-4 bg-color2' style="z-index:-4;"></div>
+	<main id='main' >
+		<section id='header-section' class='bg-color1 p-4' style='display: flex;'>
+			<img src='./_static/imgs/heartbeat.png' width='50px' />
+			<div class='d-flex d-flex-center'><h3 class='text-color0 pl-10'> Heartlytica</h3></div>
+		</section>
+		<section id='pricing-section' class='relative d-flex d-flex-center pb-100'  >
+			<h1 class='center text-color6 mt-100'>Products</h1>
+			<hr width="60%" class='border-color6 center' />
+			<div class='row'>
+				<div class='three-column'>
+					<article class='mt-20 card bg-color1 z-2 border-color1'>
+						<div class='bg-color0 card-bottom d-flex d-flex-center'>
+							<h2 class='text-color1 ph-6'>Free</h2>
+							<h3>Default Script Tag</h3>
+							<h3>Public Hosted</h3>
+							<button class="mt-20 p-custom border-color1 text-color1">Basic</button>
+						</div>
+					</article>
+				</div>
+				<div class='three-column'>
+					<article class='mt-20 card bg-color1 z-2 border-color1'>
+						<div class='bg-color0 card-bottom d-flex d-flex-center'>
+							<h2 class='text-color1 ph-6'>$5</h2>
+							<h3>Custom SDK</h3>
+							<h3>Private Hosted</h3>
+							<button class="mt-20 p-custom border-color1 text-color1 bg-color3">Standard</button>
+						</div>
+					</article>
+				</div>
+				<div class='three-column'>
+					<article class='mt-20 card bg-color1 z-2 border-color1 '>
+						<div class='bg-color0 card-bottom d-flex d-flex-center'>
+							<h2 class='text-color1 ph-6'>$500</h2>
+							<h3>Custom Integration</h3>
+							<h3>Self Hosted</h3>
+							<button class="mt-20 p-custom border-color1 text-color1">Premium</button>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>
