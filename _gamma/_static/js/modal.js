@@ -36,3 +36,12 @@ function callForgotPasswordModal(){
 function callResetPasswordModal(){
 	$("#resetModal").css("display", "block");
 }
+
+function callBetaModal(){
+	$("#betaModal").css("display", "block");
+}
+
+
+function callDonateModal(){
+	$("#donateModal").css("display", "block");
+}

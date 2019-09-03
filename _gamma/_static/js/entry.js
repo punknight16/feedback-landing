@@ -193,7 +193,7 @@ function validatePasswordInput(y){
 function goHome(){
 			var form = document.createElement("form");
 		  form.method = "GET";
-		  form.action = "./home.html";   
+		  form.action = "./pricing.html";   
 		  document.body.appendChild(form);
 		  form.submit();
 		}

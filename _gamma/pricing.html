@@ -12,6 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="./_static/css/styles.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/modal.css">
+
+	<script src="https://js.stripe.com/v3/"></script>
+	<script src='./_static/js/payment.js'></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		body {
@@ -39,6 +43,32 @@
 			padding-top: 6px;
 			padding-bottom: 6px;
 		}
+		.StripeElement {
+		  margin-top: 20px;
+		  box-sizing: border-box;
+
+		  height: 30px;
+
+		  padding-top:4px;
+
+		  border: 1px solid transparent;
+		  
+		  background-color: white;
+
+	
+		}
+
+		.StripeElement--focus {
+		  box-shadow: 0 1px 3px 0 #cfd7df;
+		}
+
+		.StripeElement--invalid {
+		  border-color: #fa755a;
+		}
+
+		.StripeElement--webkit-autofill {
+		  background-color: #fefde5 !important;
+		}
 	</style>
 </head>
 <body class='d-flex d-flex-start bg-color4'>
@@ -59,7 +89,7 @@
 							<h2 class='text-color1 ph-6'>Free</h2>
 							<h3>Default Script Tag</h3>
 							<h3>Public Hosted</h3>
-							<button class="mt-20 p-custom border-color1 text-color1">Basic</button>
+							<button id='basicButton' class="mt-20 p-custom border-color1 text-color1">Basic</button>
 						</div>
 					</article>
 				</div>
@@ -69,7 +99,7 @@
 							<h2 class='text-color1 ph-6'>$5</h2>
 							<h3>Custom SDK</h3>
 							<h3>Private Hosted</h3>
-							<button class="mt-20 p-custom border-color1 text-color1 bg-color3">Standard</button>
+							<button id='standardButton' class="mt-20 p-custom border-color1 text-color1 bg-color3">Standard</button>
 						</div>
 					</article>
 				</div>
@@ -79,12 +109,79 @@
 							<h2 class='text-color1 ph-6'>$500</h2>
 							<h3>Custom Integration</h3>
 							<h3>Self Hosted</h3>
-							<button class="mt-20 p-custom border-color1 text-color1">Premium</button>
+							<button id='premiumButton' class="mt-20 p-custom border-color1 text-color1">Premium</button>
 						</div>
 					</article>
 				</div>
 			</div>
 		</section>
 	</main>
+	<div id="betaModal" class="modal" style='display: none;'>
+	  <!-- Modal content -->
+	  <div id='betaModalContent' class="modal-content center bg-color2">
+	    <span id='betaSpan' class="close">&times;</span>
+	    <section id='beta-section' class='d-flex'>
+					<h2 class='text-color3 mt-20 z-2'>Beta Package</h2>
+					<p class='text-color0'>We are still in Beta. You can continue to the demo or donate $1 to get priority in setting up a pre-launch deal.</p>
+					<button id="homeButton" 
+						class='mt-20 bg-color2 text-color0 border-color3 z-2'>Continue</button>
+
+					<button id="donateButton" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'function callBasicModal(){
+	$("#basicModal").css("display", "block");
+}>Donate!</button>
+					<div id='betaErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+						<small><span class='text-error'>*</span>No foreseeable errors.</small>
+					</div>
+				</section>
+	  </div>
+	</div>
+
+	<div id="donateModal" class="modal" style='display: none'>
+	  <!-- Modal content -->
+	  <div id='donateModalContent' class="modal-content center bg-color2">
+	    <span id='donateSpan' class="close">&times;</span>
+	    <section id='donate-section' class='d-flex'>
+					<h2 class='text-color3 mt-20 z-2'>Donate</h2>
+					<p class='text-color0'>A $1 contribution goes a long way to making this software better!</p>
+					<input id="cardholder-name" class="mt-20" type="text" placeholder='name on card'/>
+					<!-- placeholder for Elements -->
+					
+					<div id="card-element"></div>
+					
+					<button id="card-button" 
+						class='mt-20 bg-color3 text-color1 border-color3 z-2'>Confirm Checkout</button>
+					<div id='donateErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+						<small><span class='text-error'>*</span>Check your email for your payment code.</small>
+					</div>
+				</section>
+	  </div>
+	</div>	
+	<script src='./_static/js/pricing.js'></script>
+	<script src='./_static/js/modal.js'></script>
+	<script>
+	
+		var cardElement;
+		mountStripe(stripe, function(err, result){
+			cardElement = result;
+			cardElement.mount('#card-element');
+		});
+		
+		var cardholderName = document.getElementById('cardholder-name');
+		var cardButton = document.getElementById('card-button');	
+		
+		cardButton.addEventListener('click', function(ev) {
+			doPayment(stripe, cardElement, cardholderName, AppContext.emailAddr, AppContext.imageKey, function(err, result){
+				if(err) {
+					doAction(AppContext.emailAddr, 'paymentFails');
+					alert('payment failed ', err);
+				} else {
+					doAction(AppContext.emailAddr, 'paymentSucceeds');
+					alert('payment success: ', result);
+					doRestart();
+				}
+			});
+		});
+		</script>
 </body>
 </html>
