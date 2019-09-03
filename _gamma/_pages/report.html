@@ -1,0 +1,98 @@
+<html>
+<head>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<style>
+		* {
+				margin: 0;
+				padding: 0;
+		}
+		#main > * {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	 	.section-card {
+	 		display: flex;
+	 		height: 100px;
+	 		width: 100px;
+	 		border: 2px solid #d5d5d5;
+	 		margin-bottom: 20px;
+	 	}
+	 	.section-data {
+	 		height: 100px;
+	 		width: 10px;
+	 	}
+	 	.cover-data {
+	 		background-color: red;
+	 	}
+	 	.why-data {
+	 		background-color: blue;
+	 	}
+	 	.how-data {
+	 		background-color: green;
+	 	}
+	 	.cta-data {
+	 		background-color: yellow;
+	 	}
+	</style>
+	<script>
+		function getParameterByName(name, url) {
+		  if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			    results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+	</script>
+</head>
+<body onload="createReport()">
+	<main id='main'>
+	<section>
+		<h1>Time usage over 10 seconds</h1>
+		<label>Cover Section Report</label>
+		<div id='cover-card' class='section-card'>
+			
+		</div>
+		<label>Why Section Report</label>
+		<div id='why-card' class='section-card'></div>
+		<label>How Section Report</label>
+		<div id='how-card' class='section-card'></div>
+		<label>CTA Section Report</label>
+		<div id='cta-card' class='section-card'></div>
+	</section>
+	</main>
+	<script>
+		
+		function createReport(AppContext){
+			var AppContext = JSON.parse(getParameterByName('AppContext'));
+			console.log("AppContext: ", AppContext);
+			console.log("typeof AppContext: ", typeof AppContext);
+			if(AppContext.cover_section.length > 0){
+				createData(AppContext, 'cover_section', '#cover-card', 'cover-data');
+			}
+			if(AppContext.why_section.length > 0){
+				createData(AppContext, 'why_section', '#why-card', 'why-data');
+			}
+			if(AppContext.how_section.length > 0){
+				createData(AppContext, 'how_section', '#how-card', 'how-data');
+			}
+			if(AppContext.cta_section.length > 0){
+				createData(AppContext, 'cta_section', '#cta-card', 'cta-data');
+			}
+		}
+		function createData(AppContext, section_name, card_id, data_class){
+			for (var i = 0; i < AppContext[section_name].length; i++) {
+				$(card_id).append(`<div class='section-data ${data_class}'></div>`);
+			};
+		}
+		
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,21 @@
+Todo today
+
+-pricing page (based on  andrew yang pricing page?)
+-get helper.js and report.html to work well together in their current form
+-get some form of demo working on the landing page
+-build a list.html to give an index of reports
+-hookup APIGateway, Lambda functions, Route51, and Cloudfront
+-write an article on google analytics and hotjar
+
+
+possible flows
+
+landing page -> entry -> 
+
+  -use a free script tag  ($0)
+  -request sdk ($5)
+  -custom features and integration with your platform ($500)
+
+  		-> dashboard -> report
+
+possible customer (blogger)

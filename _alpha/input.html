@@ -1,0 +1,71 @@
+<html>
+<head id='head'>
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<style id='customStyles'>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		body > * {
+			width: 300px;
+		}
+		section {
+			display: flex;
+			flex-direction: column;
+		}
+		section > * {
+			margin-top: 10px;
+		}
+		.hide {
+			display: none;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body id='body'>
+	<main>
+		<section id='input'>
+			<input id='inputInput' type='text' placeholder='url' value='./sample.html' />
+			<iframe id="iframeIframe" src="./sample.html" sandbox='allow-same-origin allow-scripts'></iframe>
+			<button id='inputButton'>Run Test</button>
+		</section>
+		<section id='test'></section>
+		<section id='report'></section>
+	</main>
+	<script>
+	$('#inputInput').on('change', function(){
+		var value = $('#inputInput').val();
+		$('#iframeIframe').attr('src', value);
+
+	});
+	$('#inputButton').on('click', function(){
+		$('#input').addClass('hide');
+		$('#customStyles').remove();
+		var value = $('#inputInput').val();
+		$.get(value, function(data, status){
+	    //console.log("Data: " + data + "\nStatus: " + status);
+	    $html = $(data);
+	    
+			var script=document.createElement('script');
+			script.type='text/javascript';
+			script.src='http://feedback-landing.s3-website-us-west-2.amazonaws.com/tracker.js';
+	    $html.append(script);
+	    console.log('$html: ', $html);
+	    $('body').html($html);
+
+	  });
+			
+	})
+  
+ 	</script>
+</body>
+</html>

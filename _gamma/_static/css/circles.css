@@ -1,0 +1,48 @@
+.relative {
+  position: relative;
+}
+.z-2 {
+  z-index: 2;
+}
+.background-circle {
+    position: absolute;
+    z-index: 0;
+    right: 10%;
+    top: 300px;
+    /* bottom: -30%; */
+    height: 540px;
+    width: 540px;
+    border-radius: 50%;
+}
+
+.background-circle-2 {
+  z-index: -2;
+  top: 600px;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  
+}
+
+.background-circle-3 {
+    position: absolute;
+    z-index: 0;
+    right: -20%;
+    top: 80px;
+    /* bottom: -30%; */
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+}
+
+.background-circle-4 {
+  position: absolute;
+    z-index: 0;
+    left: 5%;
+    top: 230px;
+    /* bottom: -30%; */
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+  
+}
