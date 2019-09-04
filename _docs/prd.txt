@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 1. type url into input
 2. on change send it to iframe src
 3. create error message 
 	(a) not a valid url
 	(b) no sections
 
-=======
+
 create a lambda function to pull data from an s3 bucket or dynamoDB
 
 
@@ -25,4 +25,4 @@ query returns:
 	timebox3: [2],
 	timebox4: [1]
 ]}
->>>>>>> dev
+
