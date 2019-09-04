@@ -24,7 +24,8 @@ function pulseHeartbeatPost(session_id, app_id, sections, cb){
 	  return cb(result);
 	}, "json");
 	*/
-	localStorage.setItem("AppContext", JSON.stringify(body));
+	/*localStorage.setItem("AppContext", JSON.stringify(body));*/
+	console.log('body: ', JSON.stringify(body));
 }
 
 function startScrollListener(AppContext, timeout){
