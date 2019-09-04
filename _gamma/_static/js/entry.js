@@ -90,7 +90,7 @@ $('#loginButton').on('click', function(e){
 				callErrorModal(err);
 			} else {
 				console.log('login success');
-				goHome();		
+				goPricing();		
 			}
 		});
 	}
@@ -190,7 +190,7 @@ function validatePasswordInput(y){
 	}
 }
 
-function goHome(){
+function goPricing(){
 			var form = document.createElement("form");
 		  form.method = "GET";
 		  form.action = "./pricing.html";   

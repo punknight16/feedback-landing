@@ -1,0 +1,51 @@
+<html>
+<head>
+	<link rel="icon" 
+      type="image/png" 
+      href="./_static/imgs/heartbeat.png">
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./_static/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.card {
+	 		display: flex;
+	 		height: 104px;
+	 		width: 104px;
+	 		border: 2px solid #d5d5d5;
+	 		margin-bottom: 20px;
+	 	}
+	 	.data {
+	 		height: 100px;
+	 		width: 10px;
+	 	}
+	</style>
+</head>
+<body class='d-flex d-flex-start bg-color4' style="width:100%;">
+	<div class='background-circle-3 bg-color2' style="z-index:-4;"></div>
+	<div class='background-circle-3 background-circle-4 bg-color2' style="z-index:-4;"></div>
+	<main id='main' class='d-flex d-flex-center'>
+		<section id='header-section' class='bg-color1 p-4' style='display: flex;'>
+			<img src='./_static/imgs/heartbeat.png' width='50px' />
+			<div class='d-flex d-flex-center'><h3 class='text-color0 pl-10'> Heartlytica</h3></div>
+		</section>
+		
+		<section id='list-sessions-section' class='d-flex d-flex-center'>
+			<div class='d-flex d-flex-center' style='width: 100%'>
+				<h1 class='mt-20 text-color1'>Report</h1>
+				<hr width="60%" class='border-color1 center' />
+			</div>
+			<div class='pt-20 mt-20 d-flex d-flex-center' style='background-color: #FFF; width: 80%'>
+					<div class='card'><div class='data'></div></div>
+					<div class='card'><div class='data'></div></div>
+					<div class='card'><div class='data'></div></div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

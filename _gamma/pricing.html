@@ -119,11 +119,13 @@
 	<div id="betaModal" class="modal" style='display: none;'>
 	  <!-- Modal content -->
 	  <div id='betaModalContent' class="modal-content center bg-color2">
-	    <span id='betaSpan' class="close">&times;</span>
-	    <section id='beta-section' class='d-flex'>
+	    <div class='modal-header'>
+	    	<span id='betaSpan' class="close">&times;</span>
+	    </div>
+	    <section id='beta-section' class='d-flex modal-body'>
 					<h2 class='text-color3 mt-20 z-2'>Beta Package</h2>
 					<p class='text-color0'>We are still in Beta. You can continue to the demo or donate $1 to get priority in setting up a pre-launch deal.</p>
-					<button id="homeButton" 
+					<button id="continueButton" 
 						class='mt-20 bg-color2 text-color0 border-color3 z-2'>Continue</button>
 
 					<button id="donateButton" 
@@ -140,8 +142,10 @@
 	<div id="donateModal" class="modal" style='display: none'>
 	  <!-- Modal content -->
 	  <div id='donateModalContent' class="modal-content center bg-color2">
-	    <span id='donateSpan' class="close">&times;</span>
-	    <section id='donate-section' class='d-flex'>
+	    <div class='modal-header'>
+	    	<span id='donateSpan' class="close">&times;</span>
+	    </div>
+	    <section id='donate-section' class='d-flex modal-body'>
 					<h2 class='text-color3 mt-20 z-2'>Donate</h2>
 					<p class='text-color0'>A $1 contribution goes a long way to making this software better!</p>
 					<input id="cardholder-name" class="mt-20" type="text" placeholder='name on card'/>
@@ -156,7 +160,31 @@
 					</div>
 				</section>
 	  </div>
-	</div>	
+	</div>
+	<div id="getStartedModal" class="modal" style='display: none'>
+	  <!-- Modal content -->
+	  <div id='getStartedModalContent' class="modal-content center bg-color2">
+	    <section id='get-started-section' class='d-flex d-flex-center' style='width: 100%'>
+	    	<div class="modal-header" style="width: 100%">
+			    <span class="close">&times;</span>
+			  </div>
+				<div class='modal-body'>
+					<h2 class='text-color3 mt-20 z-2 ph-6'>Get Started</h2>
+			    <hr width="60%" class='border-color3 center' />
+					<h3 class='mt-4 text-color0'>Add the script tag below to any site you want to track.</h3>
+					<div class='mt-4 bg-color6 mb-20 p-4'>
+						<code>&lt;script src='helper.js'&gt;&lt;/script&gt;</code>
+					</div>
+					<button id='getStartedButton'
+					class='btn mt-20 bg-color1 text-color0 border-color1 z-2'>Goto Dashboard</button>
+				</div>
+				<div id='getStartedErrorPanel' class='hide text-color0 z-2 mt-4' style='text-align: right;'>
+					<small><span class='text-error'>*</span>Check your email for your payment code.</small>
+				</div>
+				</section>
+	  </div>
+	</div>
+		
 	<script src='./_static/js/pricing.js'></script>
 	<script src='./_static/js/modal.js'></script>
 	<script>

@@ -1,0 +1,47 @@
+<html>
+<head>
+	<link rel="icon" 
+      type="image/png" 
+      href="./_static/imgs/heartbeat.png">
+	<script
+		  src="https://code.jquery.com/jquery-3.4.1.js"
+		  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		  crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./_static/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class='d-flex d-flex-start bg-color4' style="width:100%;">
+	<div class='background-circle-3 bg-color2' style="z-index:-4;"></div>
+	<div class='background-circle-3 background-circle-4 bg-color2' style="z-index:-4;"></div>
+	<main id='main' class='d-flex d-flex-center'>
+		<section id='header-section' class='bg-color1 p-4' style='display: flex;'>
+			<img src='./_static/imgs/heartbeat.png' width='50px' />
+			<div class='d-flex d-flex-center'><h3 class='text-color0 pl-10'> Heartlytica</h3></div>
+		</section>
+		
+		<section id='list-sessions-section' class='d-flex d-flex-start'>
+			<div class='d-flex d-flex-center' style='width: 100%'>
+				<h1 class='mt-20 text-color1'>Dashboard</h1>
+				<hr width="60%" class='border-color1 center' />
+				
+				<div class='mt-20 p-4'>
+					<input type='text' placeholder='Enter your URL' />
+					<button class='p-custom'>Search</button>
+				</div>
+			</div>
+			<div class='ph-100 mt-20' style='display:block; width: 100%;'>
+				<ul class='bg-color6 ph-20' style='border-radius: 5px'>
+					<h3 id='reportLink1' class='btn btn-link'>session 1</h3>
+					<h3 id='reportLink2' class='btn btn-link'>session 2</h3>
+					<h3 id='reportLink3' class='btn btn-link'>session 3</h3>
+					
+				</ul>
+			</div>
+		</section>
+	</main>
+	<script src='./_static/js/dashboard.js'></script>
+</body>
+</html>

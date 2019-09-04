@@ -38,10 +38,16 @@ function callResetPasswordModal(){
 }
 
 function callBetaModal(){
+	$(".modal").css("display", "none");
 	$("#betaModal").css("display", "block");
 }
 
-
 function callDonateModal(){
+	$(".modal").css("display", "none");
 	$("#donateModal").css("display", "block");
+}
+
+function callGetStartedModal(){
+	$(".modal").css("display", "none");
+	$("#getStartedModal").css("display", "block");
 }
