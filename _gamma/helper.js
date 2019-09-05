@@ -1,3 +1,21 @@
+function provisionHeartlyticaGET(cb){
+	var url = "https://96abf83276.execute-api.us-west-2.amazonaws.com/prod/provision"
+	$.get(url, function(result){
+		cb(null, result);
+	});
+};
+
+function provisionHeartlyticaPOST(session_id, app_id, sections, cb){
+	var body = {
+		session_id: session_id,
+		app_id: app_id,
+		sections: sections
+	};
+	var url = "https://96abf83276.execute-api.us-west-2.amazonaws.com/prod/provision"
+	$.post(url, JSON.stringify(body), function(result){
+		cb(null, result);
+	});
+};
 function startHeartbeatPost(session_id, app_id, sections, cb){
 	
 	var body = {
@@ -62,7 +80,7 @@ $( document ).ready(function() {
 	AppContext = {
 		sections: {}, 
 		heights: {}, 
-		app_id: 'heartbeat', 
+		app_id: window.location.href, 
 		session_id: 'session_id-'+Math.random().toString(32).substring(2)
 	};
 	
@@ -80,8 +98,13 @@ $( document ).ready(function() {
 		AppContext.sections[section_id] =  [];
 		AppContext.heights[section_id] = $(section_selector).offset().top;
 	};
+
 	
+	provisionHeartlyticaPOST(AppContext.session_id, AppContext.app_id, AppContext.sections, function(err, result){
+		console.log('result: ', result);
+	});
 	
+	/*
 	startHeartbeatPost(AppContext.session_id, AppContext.app_id, AppContext.sections, function(result){
 		console.log('result: ', result);
 	});
@@ -96,5 +119,5 @@ $( document ).ready(function() {
 	sliceSectionsByTime(AppContext, 30);
 	sliceSectionsByTime(AppContext, 40);
 	sliceSectionsByTime(AppContext, 50);	
-
+	*/
 });
