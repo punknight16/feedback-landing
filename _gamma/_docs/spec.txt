@@ -1,6 +1,6 @@
 4 functions
 
-- write function to provision session_id JSON doc in DynamoDB --DONE
-- write function to update session_id with sections JSON doc in DynamoDB
-- write function to list all session_ids related to an app_id
-- write function to inspect the sections object of a session_id JSON doc
+- write function to provision session_id JSON doc in DynamoDB -- DONE
+- write function to update session_id with sections JSON doc in DynamoDB -- DONE
+- write function to list all session_ids related to an app_id - DONE
+- write function to inspect the sections object of a session_id JSON doc - DONE

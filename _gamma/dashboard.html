@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./_static/css/styles.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="./_static/css/circles.css">
+	<link rel="stylesheet" type="text/css" href="./_static/css/modal.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class='d-flex d-flex-start bg-color4' style="width:100%;">
@@ -28,8 +29,12 @@
 				<hr width="60%" class='border-color1 center' />
 				
 				<div class='mt-20 p-4'>
-					<input type='text' placeholder='Enter your URL' />
-					<button class='p-custom'>Search</button>
+					<input id='searchInput' type='text' placeholder='Enter your URL' />
+					<button id='searchButton' class='p-custom'>Search</button>
+				</div>
+				<div id='searchErrorPanel' class='hide text-color0 z-2 mt-4' 
+					style='text-align: center;'>
+					<small id='searchErrorText'><span class='text-error'>*</span>Search cannot be empty</small>
 				</div>
 			</div>
 			<div class='ph-100 mt-20' style='display:block; width: 100%;'>
@@ -39,6 +44,18 @@
 			</div>
 		</section>
 	</main>
+
+	<div id="errorModal" class="modal">
+	  <!-- Modal content -->
+	  <div id='errorModalContent' class="modal-content center bg-color1">
+	    <span id='errorSpan' class="close">&times;</span>
+	    <div class='modal-body'>
+	    	<img src="./_static/imgs/error.png" width="300px" />
+	    </div>
+	  </div>
+	</div>
+
 	<script src='./_static/js/dashboard.js'></script>
+	<script src='./_static/js/modal.js'></script>
 </body>
 </html>

@@ -1,10 +1,3 @@
-function provisionHeartlyticaGET(cb){
-	var url = "https://96abf83276.execute-api.us-west-2.amazonaws.com/prod/provision"
-	$.get(url, function(result){
-		cb(null, result);
-	});
-};
-
 function provisionHeartlyticaPOST(session_id, app_id, sections, cb){
 	var body = {
 		session_id: session_id,
@@ -16,35 +9,25 @@ function provisionHeartlyticaPOST(session_id, app_id, sections, cb){
 		cb(null, result);
 	});
 };
-function startHeartbeatPost(session_id, app_id, sections, cb){
-	
-	var body = {
-		session_id: session_id,
-		app_id: app_id,
-		sections: sections
-	};
-	/*
-	$.post( "http://localhost:3000/startHeartbeatPost", JSON.stringify(body), function( result ) {
-	  return cb(result);
-	}, "json");
-*/
-	localStorage.setItem("AppContext", JSON.stringify(body));
-}
 
-function pulseHeartbeatPost(session_id, app_id, sections, cb){
+function updateHeartlyticaGET(cb){
+	var url = "https://96abf83276.execute-api.us-west-2.amazonaws.com/prod/update"
+	$.get(url, function(result){
+		cb(null, result);
+	});
+};
+
+function updateHeartlyticaPOST(session_id, app_id, sections, cb){
 	var body = {
 		session_id: session_id,
 		app_id: app_id,
 		sections: sections
 	};
-	/*
-	$.post( "http://localhost:3000/pulseHeartbeatPost", JSON.stringify(body), function( result ) {
-	  return cb(result);
-	}, "json");
-	*/
-	/*localStorage.setItem("AppContext", JSON.stringify(body));*/
-	console.log('body: ', JSON.stringify(body));
-}
+	var url = "https://96abf83276.execute-api.us-west-2.amazonaws.com/prod/update"
+	$.post(url, JSON.stringify(body), function(result){
+		cb(null, result);
+	});
+};
 
 function startScrollListener(AppContext, timeout){
 	
@@ -68,7 +51,8 @@ function startScrollListener(AppContext, timeout){
 function sliceSectionsByTime(AppContext, time){
 	var timeout = time * 1000;
 	setTimeout(function(){ 
-		pulseHeartbeatPost(AppContext.session_id, AppContext.app_id, AppContext.sections, function(result){
+		updateHeartlyticaPOST(AppContext.session_id, AppContext.app_id, AppContext.sections, function(err, result){
+			console.log('err: ', err);
 			console.log('result: ', result);
 		});
 	}, timeout);
@@ -104,13 +88,9 @@ $( document ).ready(function() {
 		console.log('result: ', result);
 	});
 	
-	/*
-	startHeartbeatPost(AppContext.session_id, AppContext.app_id, AppContext.sections, function(result){
-		console.log('result: ', result);
-	});
 	
 	AppContext.timer = 0;
-	AppContext.current_height = 0;
+	
 
 	startScrollListener(AppContext, 51);
 	
@@ -119,5 +99,5 @@ $( document ).ready(function() {
 	sliceSectionsByTime(AppContext, 30);
 	sliceSectionsByTime(AppContext, 40);
 	sliceSectionsByTime(AppContext, 50);	
-	*/
+	
 });
