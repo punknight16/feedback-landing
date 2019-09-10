@@ -1,0 +1,1 @@
+For Heartlytica, I did some research on how bounce rate affects SEO in a previous article. I built this product to determine how long a person is viewing a particular page, and what they are viewing. This will help with my blog articles and landing pages in the future. Additionally, I can answer the question: Are people actually reading the content that I give them?

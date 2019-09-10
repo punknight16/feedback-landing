@@ -4,6 +4,9 @@
 .z-2 {
   z-index: 2;
 }
+.z-6 {
+  z-index: 6;
+}
 .background-circle {
     position: absolute;
     z-index: 0;
